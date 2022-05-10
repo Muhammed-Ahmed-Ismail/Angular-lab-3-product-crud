@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'day3';
+  check:number=3 ;
+  slug:string="iti-roure";
+  names:string[]=["Ahmed","ali","muhammed","fsfs","sfor"];
+  needle:string='';
 }

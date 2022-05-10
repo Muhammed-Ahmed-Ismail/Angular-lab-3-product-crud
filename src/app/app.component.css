@@ -1,0 +1,24 @@
+
+#c-header
+{
+  width: 100%;
+  background: cadetblue;
+}
+#main-section
+{
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+"curd crud crud item item"
+"curd crud crud item item"
+"curd crud crud item item"
+"curd crud crud item item";
+  height: 100vh;
+}
+#c-crud
+{
+  background: antiquewhite;
+  grid-area: crud;
+}

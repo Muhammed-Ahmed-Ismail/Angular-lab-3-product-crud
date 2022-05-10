@@ -1,0 +1,26 @@
+
+<label>filter</label>
+<input class="input-group col-3" [(ngModel)]="selectedProduct">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col"><button class="btn btn-primary"> show images</button> </th>
+    <th scope="col">product</th>
+    <th scope="col">code</th>
+    <th scope="col">available</th>
+    <th scope="col">price</th>
+    <th scope="col">rating</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let product of products | customFilter:selectedProduct">
+  <tr>
+    <td >{{product.image_path}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.code}}</td>
+    <td>{{product.available}}</td>
+    <td>{{product.price}}</td>
+    <td><app-stars [rate]=product.rating></app-stars></td>
+
+  </tr>
+  </tbody>
+</table>
