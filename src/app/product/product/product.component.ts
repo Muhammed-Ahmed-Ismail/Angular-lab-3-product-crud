@@ -39,6 +39,13 @@ export class ProductComponent implements OnInit {
     this.products.push(new Product(this.addedProduct.id,this.addedProduct.name,this.addedProduct.code,this.addedProduct.available,this.addedProduct.price,this.addedProduct.rating))
     console.log(this.products)
   }
+  delete(id:number)
+  {
+    let indexOfItemToDelete=this.products.findIndex(product=>{
+      return product.id === id;
+    })
+    this.products.splice(indexOfItemToDelete,1);
+  }
 
 
 }
