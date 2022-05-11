@@ -15,7 +15,7 @@ import { ProductsFilterPipe } from './products-filter.pipe';
   declarations: [
     AppComponent,
     PowerToXPipe,
-    DashReplacerPipe,
+
 
 
 

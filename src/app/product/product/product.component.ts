@@ -13,12 +13,16 @@ export class ProductComponent implements OnInit {
  ]
 
   addedProduct:Product=new Product();
+  editedProduct:Product=new Product();
+  editingProductIndex:number=0;
+  editing:boolean=false;
   displayModal: boolean=false;
   display: boolean = false;
 
   showImages:boolean=false
 
   showModalDialog() {
+    this.editing=false
     this.displayModal = true;
   }
 
@@ -45,6 +49,24 @@ export class ProductComponent implements OnInit {
       return product.id === id;
     })
     this.products.splice(indexOfItemToDelete,1);
+  }
+
+  edit(id:number)
+  {
+    this.editing=true;
+    let indexOfItemToEdit=this.products.findIndex(product=>{
+      return product.id === id;
+    })
+    this.editingProductIndex=indexOfItemToEdit;
+    this.editedProduct=this.products[indexOfItemToEdit]
+    this.displayModal=true
+  }
+
+  save()
+  {
+    this.products.splice(this.editingProductIndex,1,this.editedProduct)
+    this.editing=false;
+    this.displayModal=false;
   }
 
 

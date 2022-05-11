@@ -15,6 +15,7 @@ import {RatingModule} from 'primeng/rating';
 import {FileUploadModule} from 'primeng/fileupload';
 import {HttpClientModule} from '@angular/common/http';
 import {RippleModule} from "primeng/ripple";
+import {DashReplacerPipe} from "../dash-replacer.pipe";
 
 
 
@@ -24,7 +25,8 @@ import {RippleModule} from "primeng/ripple";
   declarations: [
     ProductComponent,
     CustomFilterPipe,
-    ProductsFilterPipe
+    ProductsFilterPipe,
+    DashReplacerPipe,
 
   ],
   imports: [
