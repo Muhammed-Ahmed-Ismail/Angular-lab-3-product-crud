@@ -1,26 +1,89 @@
+<div id="tool-bar">
+<span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input type="text" pInputText placeholder="Search" [(ngModel)]="selectedProduct" />
+</span>
+<!--
+<p-button (click)="showModalDialog()" icon="pi pi-external-link" label="add" class="p-button-success"> </p-button>
+-->
+  <button pButton  (click)="showModalDialog()" pRipple type="button" icon="pi pi-plus" label="ADD" class="p-button-success"></button>
 
-<label>filter</label>
-<input class="input-group col-3" [(ngModel)]="selectedProduct">
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th scope="col"><button class="btn btn-primary"> show images</button> </th>
-    <th scope="col">product</th>
-    <th scope="col">code</th>
-    <th scope="col">available</th>
-    <th scope="col">price</th>
-    <th scope="col">rating</th>
-  </tr>
-  </thead>
-  <tbody *ngFor="let product of products | customFilter:selectedProduct">
-  <tr>
-    <td >{{product.image_path}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.code}}</td>
-    <td>{{product.available}}</td>
-    <td>{{product.price}}</td>
-    <td><app-stars [rate]=product.rating></app-stars></td>
+</div>
+<section id="crud-container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">
+        <button class="btn btn-primary" (click)="toggleShowImages()"> show images</button>
+      </th>
+      <th scope="col">product</th>
+      <th scope="col">code</th>
+      <th scope="col">available</th>
+      <th scope="col">price</th>
+      <th scope="col">rating</th>
+      <th> Options</th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr *ngFor="let product of products | productsFilter:selectedProduct">
+      <td ><div *ngIf="showImages">{{product.image_path}}</div></td>
+      <td>{{product.name}}</td>
+      <td>{{product.code}}</td>
+      <td>{{product.available |date:'short'}}</td>
+      <td>{{product.price}}</td>
+      <td>
+        <app-stars [rate]=product.rating></app-stars>
+      </td>
+      <td>
+        <div id="table-controller">
+          <button pButton pRipple type="button" label="" class="p-button-warning p-button-sm"  icon="pi pi-pencil" ></button>
+          <button pButton pRipple type="button" label="" class="p-button-danger p-button-sm" icon="pi pi-trash"></button>
+        </div>
+      </td>
 
-  </tr>
-  </tbody>
-</table>
+    </tr>
+    </tbody>
+  </table>
+
+
+</section>
+
+
+<p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false">
+  <section id="crud-controller">
+
+   <span class="p-float-label">
+    <input  [(ngModel)]="addedProduct.id" id="id" type="text" pInputText>
+    <label for="id">ID</label>
+    </span>
+
+    <span class="p-float-label">
+    <input  [(ngModel)]="addedProduct.name" id="name" type="text" pInputText>
+    <label for="name">name</label>
+    </span>
+
+    <span class="p-float-label">
+    <input  [(ngModel)]="addedProduct.price" id="price" type="text" pInputText>
+    <label for="price">Price</label>
+    </span>
+
+    <span class="p-float-label">
+    <input  [(ngModel)]="addedProduct.code" id="code" type="text" pInputText>
+    <label for="code">product code</label>
+    </span>
+
+    <p-rating [(ngModel)]="addedProduct.rating"></p-rating>
+
+    <div class="field col-12 md:col-4">
+      <label for="basic">Available At</label>
+      <p-calendar inputId="basic" [(ngModel)]="addedProduct.available" id="basic"></p-calendar>
+    </div>
+
+
+
+  </section>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="add()" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
